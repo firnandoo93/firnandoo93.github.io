@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141B29" />
+      <stop offset="50%" stop-color="#101520" />
+      <stop offset="100%" stop-color="#0B0E15" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#1D4ED8" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2A374D" />
+      <stop offset="100%" stop-color="#182030" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1E2A3A" stroke-width="0.7" stroke-opacity="0.5" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="750" fill="url(#bgGrad)" />
+  <rect width="600" height="750" fill="url(#grid)" />
+  
+  <!-- Subtle lighting glow -->
+  <circle cx="300" cy="280" r="220" fill="url(#glowGrad)" filter="blur(20px)" />
+  <circle cx="300" cy="260" r="140" fill="none" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.15" stroke-dasharray="4 6" />
+
+  <!-- Abstract Head & Torso Silhouette -->
+  <g transform="translate(0, 40)">
+    <!-- Shoulders / Torso -->
+    <path d="M 170 560 Q 200 450 250 430 L 350 430 Q 400 450 430 560 L 440 650 L 160 650 Z" fill="url(#avatarGrad)" stroke="#1E2A3A" stroke-width="1.5" />
+    <!-- Collar / Hoodie Accent -->
+    <path d="M 265 430 L 300 480 L 335 430 Z" fill="#182030" stroke="#3B82F6" stroke-width="1.2" stroke-opacity="0.4" />
+    <path d="M 300 480 L 300 580" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3 3" />
+
+    <!-- Neck -->
+    <rect x="275" y="360" width="50" height="80" rx="10" fill="#243044" />
+
+    <!-- Head -->
+    <ellipse cx="300" cy="270" rx="72" ry="92" fill="url(#avatarGrad)" stroke="#1E2A3A" stroke-width="1.5" />
+
+    <!-- Stylized Modern Glasses / Visor -->
+    <rect x="245" y="245" width="45" height="28" rx="8" fill="#151C28" stroke="url(#accentGrad)" stroke-width="2" />
+    <rect x="310" y="245" width="45" height="28" rx="8" fill="#151C28" stroke="url(#accentGrad)" stroke-width="2" />
+    <line x1="290" y1="258" x2="310" y2="258" stroke="url(#accentGrad)" stroke-width="2" />
+    <!-- Glasses Reflection -->
+    <path d="M 252 265 L 265 250" stroke="#60A5FA" stroke-width="1.5" stroke-opacity="0.6" stroke-linecap="round" />
+    <path d="M 317 265 L 330 250" stroke="#60A5FA" stroke-width="1.5" stroke-opacity="0.6" stroke-linecap="round" />
+
+    <!-- Modern Headphones Accent -->
+    <path d="M 216 265 C 216 195 384 195 384 265" fill="none" stroke="#3B82F6" stroke-width="4" stroke-opacity="0.8" />
+    <rect x="210" y="250" width="16" height="42" rx="7" fill="#1E293B" stroke="#60A5FA" stroke-width="1.5" />
+    <rect x="374" y="250" width="16" height="42" rx="7" fill="#1E293B" stroke="#60A5FA" stroke-width="1.5" />
+  </g>
+
+  <!-- Photo replace guide watermark -->
+  <g transform="translate(300, 680)" opacity="0.6">
+    <text text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#9AA6B8" letter-spacing="1">
+      [ PHOTO PLACEHOLDER — REPLACE WITH YOUR IMAGE ]
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,190 @@
+/* ── Design Tokens / CSS Custom Properties ──────────────
+   Stored as RGB channels so they work both in plain CSS
+   (rgb(var(--token)) / rgb(var(--token) / 0.5)) and in Tailwind.
+   "-strong" shades are darker variants of the brand hues used
+   for small text, where the base hues don't reach 4.5:1. */
+:root {
+  /* Neutrals */
+  --color-text: 8 12 19;
+  /* #080C13  headings & primary text */
+  --color-text-muted: 82 96 113;
+  /* #526071  secondary text (6.4:1 on white) */
+  --color-bg: 244 247 250;
+  /* #F4F7FA  page background */
+  --color-surface: 255 255 255;
+  /* #FFFFFF  cards & navigation */
+  --color-surface-subtle: 238 242 247;
+  /* #EEF2F7 inset / image wells */
+  --color-border: 226 232 240;
+  /* #E2E8F0  cool-gray borders */
+  --color-border-strong: 203 213 225;
+  /* #CBD5E1  scrollbar, stronger dividers */
+
+  /* Brand */
+  --color-primary: 136 132 255;
+  /* #8884FF  brand: CTAs, indicators, icons */
+  --color-primary-hover: 119 114 247;
+  /* #7772F7 */
+  --color-primary-strong: 93 88 224;
+  /* #5D58E0  primary text on light bg (5.3:1) */
+  --color-secondary: 161 141 218;
+  /* #A18DDA  badges, supporting visuals */
+  --color-secondary-strong: 104 80 179;
+  /* #6850B3 secondary text on light bg (6.2:1) */
+  --color-accent: 164 114 209;
+  /* #A472D1  sparing decorative accents */
+  --color-accent-strong: 128 69 181;
+  /* #8045B5  accent text on light bg (6.1:1) */
+}
+
+/* ── Base ─────────────────────────────────────────────── */
+body {
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-text));
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Selection ────────────────────────────────────────── */
+::selection {
+  background: rgb(var(--color-primary) / 0.25);
+  color: rgb(var(--color-text));
+}
+
+/* ── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-bg));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-border-strong));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-primary));
+}
+
+/* ── Nav ──────────────────────────────────────────────── */
+#main-nav {
+  background: rgb(var(--color-surface) / 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+#main-nav.nav-scrolled {
+  background: rgb(var(--color-surface) / 0.96);
+  box-shadow: 0 2px 10px -2px rgb(var(--color-text) / 0.06), 0 1px 0 0 rgb(var(--color-border));
+}
+
+/* ── Mobile menu transition ───────────────────────────── */
+#mobile-menu {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Hero glow ────────────────────────────────────────── */
+.hero-glow {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgb(var(--color-primary) / 0.10) 0%, rgb(var(--color-secondary) / 0.04) 45%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  right: -80px;
+  top: -80px;
+}
+
+/* ── Scroll reveal ────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion: skip animations entirely */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  #mobile-menu {
+    transition: none;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Timeline connector line ──────────────────────────── */
+.timeline-line {
+  position: absolute;
+  left: 17px;
+  top: 40px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, rgb(var(--color-primary)), rgb(var(--color-border)));
+}
+
+/* ── Grid pattern decoration ──────────────────────────── */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgb(var(--color-primary) / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--color-primary) / 0.07) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* ── Focus visible ────────────────────────────────────────
+   Uses the strong primary shade so the outline stays clearly
+   visible (>3:1) on both white and #F4F7FA surfaces. */
+:focus-visible {
+  outline: 2px solid rgb(var(--color-primary-strong));
+  outline-offset: 2px;
+}
+
+/* ── Typewriter Animation ─────────────────────────────── */
+.typewriter-container {
+  display: inline;
+  vertical-align: baseline;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2.5px;
+  height: 0.82em;
+  margin-left: 2px;
+  vertical-align: -0.04em;
+  background-color: #6258E8;
+  border-radius: 1px;
+  animation: typewriter-blink 0.8s ease-in-out infinite;
+}
+
+@keyframes typewriter-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    display: none !important;
+  }
+}
